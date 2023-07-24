@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.health.mapper.QecitemMapper">
+    <select id="getQuestion" resultType="java.lang.Integer">
+        select q_id from question WHERE c_id=#{c_id}
+    </select>
+    <insert id="insertQec">
+        insert into qecitem(q_id,e_id,c_id,s_id) values (#{q_id},#{e_id},#{c_id},#{s_id})
+    </insert>
+    <delete id="deleteQecitem">
+        delete from qecitem where e_id=#{e_id} and s_id=#{s_id}
+    </delete>
+</mapper>

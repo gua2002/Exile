@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.health.mapper.StudentMapper">
+    <select id="studentLogin" resultType="com.health.po.Student">
+      select * from student where s_id=#{s_id} and s_password=#{s_password}
+    </select>
+    <update id="studentPWD" parameterType="com.health.po.Student">
+     update student set s_password=#{s_password} where s_id=#{s_id}
+    </update>
+    <select id="findStudents" resultType="com.health.vo.StudentVo">
+        select s.s_id,s_name,e_starte,e_ends,e_title,ev.e_id,ev.e_descripte,s.s_college from student s,evaluating ev,esitem es
+        where ev.e_id=es.e_id and s.s_id=es.s_id
+    </select>
+    <select id="findAllStudents" resultType="com.health.po.Student">
+       select s_id,s_name,s_college,s_major,s_class,s_phone,s_sex from student
+    </select>
+    <select id="findstudentbyid" resultType="com.health.po.Student">
+        select s_id,s_name,s_college,s_major,s_class,s_phone,s_sex,s_image from student where s_id=#{s_id}
+    </select>
+    <select id="findstudentbysid" resultType="com.health.po.Student">
+        select s_id,s_name,s_college,s_major,s_class,s_phone,s_sex,s_image from student where s_id=#{s_id}
+    </select>
+    <update id="updatastudent" parameterType="com.health.po.Student">
+       update student set s_name=#{s_name},s_college=#{s_college},s_major=#{s_major},s_class=#{s_class},s_sex=#{s_sex},s_phone=#{s_phone} where s_id=#{s_id}
+    </update>
+    <delete id="deleteStudentById">
+        delete from student where s_id=#{s_id}
+    </delete>
+    <insert id="addStudent" parameterType="com.health.po.Student">
+        insert into student(s_name,s_sex,s_college,s_major,s_class,s_phone,s_image)
+        values (#{s_name},#{s_sex},#{s_college},#{s_major},#{s_class},#{s_phone},#{s_image})
+    </insert>
+</mapper>

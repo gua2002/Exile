@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.health.mapper.EvaluatingMapper">
+    <select id="findEvaluating" resultType="com.health.po.Evaluating">
+       select evaluating.e_id,e_starte,e_ends,e_title,state,e_descripte,e_time from evaluating,esitem where evaluating.e_id=esitem.e_id
+    </select>
+    <select id="findEvaluatInfo" resultType="com.health.po.Evaluating">
+       select e_id,e_starte,e_ends,e_title,e_descripte,e_toke,e_time from evaluating where e_id=#{e_id}
+    </select>
+    <update id="updataEvaluatingByid" parameterType="com.health.po.Evaluating">
+       update evaluating set e_title=#{e_title},e_descripte=#{e_descripte},e_starte=#{e_starte},e_ends=#{e_ends},e_time=#{e_time} where e_id=#{e_id}
+   </update>
+    <insert id="addEvaluating" parameterType="com.health.po.Evaluating" useGeneratedKeys="true" keyProperty="e_id">
+       insert into evaluating(e_title,e_descripte,e_starte,e_ends,e_time,e_toke)
+       values (#{e_title},#{e_descripte},#{e_starte},#{e_ends},#{e_time},#{e_toke})
+    </insert>
+    <delete id="deleteEvaluatingById">
+        delete from evaluating where e_id=#{e_id}
+    </delete>
+    <select id="findAllEvaluating" resultType="com.health.po.Evaluating">
+        select e_id,e_title,e_descripte,e_starte,e_ends,e_time from evaluating
+    </select>
+</mapper>

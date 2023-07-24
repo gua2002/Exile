@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.health.mapper.WarningMapper">
+    <select id="getSumQgradeByCid" resultType="java.lang.Integer">
+       SELECT sum(a.q_grade) from answers a,question q WHERE a.q_id=q.q_id and a.e_id=#{e_id} and a.s_id=#{s_id} GROUP BY q.c_id
+    </select>
+    <select id="getWarningByid" resultType="com.health.vo.WarningVo">
+        SELECT c_name,w_name FROM classification c,warning w,qecitem qec,question q WHERE c.c_id=qec.c_id and #{q_grade}>=w.w_grademin and w.w_grademax>=#{q_grade} and qec.e_id=#{e_id} and qec.s_id=#{s_id} and qec.q_id=q.q_id and c.c_id=#{c_id} GROUP BY c.c_id
+    </select>
+
+</mapper>

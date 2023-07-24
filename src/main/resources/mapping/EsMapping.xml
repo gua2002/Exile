@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.health.mapper.EsMapper">
+
+    <update id="updataState" parameterType="com.health.po.Esitem">
+       update esitem set state=1 where s_id=#{s_id} and e_id=#{e_id}
+    </update>
+    <update id="insertEsc" parameterType="com.health.po.Esitem">
+        update esitem set s_id=#{s_id} where e_id=#{e_id}
+    </update>
+    <insert id="insertEsceid">
+        insert into esitem(e_id) values (#{e_id})
+    </insert>
+    <delete id="deleteEsceid" >
+       delete from esitem where e_id=#{e_id}
+    </delete>
+</mapper>

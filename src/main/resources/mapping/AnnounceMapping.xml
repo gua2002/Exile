@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.health.mapper.AnnounceMapper">
+   <select id="findAnnounce" resultType="com.health.po.Announcement">
+      select * from announcement
+   </select>
+    <insert id="addAnnounce" parameterType="com.health.po.Announcement">
+       insert into announcement(announcementname,description,time) values (#{announcementname},#{description},#{time})
+    </insert>
+    <delete id="deleteAnnounceById">
+       delete from announcement where announcementid=#{announcementid}
+    </delete>
+    <select id="findAnnounceByTime" resultType="com.health.po.Announcement">
+        select * from announcement order by time desc limit 0,10
+    </select>
+</mapper>

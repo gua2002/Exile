@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.health.mapper.AnswersMapper">
+    <select id="findAnswers" resultType="com.health.vo.AnswersVo">
+        SELECT q.q_id,q.q_name,q.c_id,e.e_id,e.e_time,e.e_starte,e.e_ends,e.e_title,e.e_descripte,e.e_toke
+        FROM question q,evaluating e,qecitem qec
+        WHERE q.q_id=qec.q_id AND qec.e_id=e.e_id AND e.e_id=#{e_id}
+    </select>
+    <insert id="insertAnswers" parameterType="com.health.po.Answers">
+      insert into answers(q_grade,s_id,q_id,e_id) values (#{q_grade},#{s_id},#{q_id},#{e_id})
+    </insert>
+</mapper>

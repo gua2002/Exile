@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.health.mapper.MessageMapper">
+  <select id="findMessage" resultType="com.health.po.Message">
+      select * from message
+  </select>
+    <insert id="insertMessage" parameterType="com.health.po.Message">
+        insert into message(m_title,m_content,m_time) values (#{m_title},#{m_content},#{m_time})
+    </insert>
+    <insert id="insertMessageCount" parameterType="com.health.po.Replay">
+       insert into replay(r_replay,r_time,m_id) values (#{r_replay},#{r_time},#{m_id})
+    </insert>
+</mapper>

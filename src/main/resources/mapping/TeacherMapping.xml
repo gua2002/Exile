@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.health.mapper.TeacherMapper">
+
+    <select id="teacherLogin" resultType="com.health.po.Teacher">
+        select * from teacher where t_id=#{t_id} and t_password=#{t_password}
+    </select>
+    <select id="findTeacherList" resultType="com.health.po.Teacher">
+        select * from teacher
+    </select>
+    <update id="updataTeacherByid" parameterType="com.health.po.Teacher">
+      update teacher set t_name=#{t_name},t_college=#{t_college},t_sex=#{t_sex},t_type=#{t_type} where t_id=#{t_id}
+    </update>
+    <delete id="deleteTeacherById">
+      delete from teacher where t_id=#{t_id}
+    </delete>
+    <insert id="addTeacher" parameterType="com.health.po.Teacher">
+      insert into teacher(t_name,t_college,t_sex,t_type,t_image) values (#{t_name},#{t_college},#{t_sex},#{t_type},#{t_image})
+    </insert>
+</mapper>

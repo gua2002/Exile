@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.health.mapper.ArticleMapper">
+    <select id="findArticleByPage" resultType="com.health.po.Article">
+      select et_id,et_name,et_description,et_ctime,et_author,et_root from article
+    </select>
+    <select id="findArticleById" resultType="com.health.po.Article">
+      select et_id,et_name,et_description,et_ctime,et_author,et_root,et_content from article where et_id=#{et_id}
+    </select>
+    <update id="updataArticle" parameterType="com.health.po.Article">
+        update article set et_name=#{et_name},et_description=#{et_description},et_ctime=#{et_ctime},et_author=#{et_author},et_root=#{et_root} where et_id=#{et_id}
+    </update>
+    <insert id="addArticle" parameterType="com.health.po.Article">
+       insert into article(et_name,et_description,et_ctime,et_author,et_root,et_content) values (#{et_name},#{et_description},#{et_ctime},#{et_author},#{et_root},#{et_content})
+    </insert>
+    <delete id="deleteArticleById">
+        delete from article where et_id=#{et_id}
+    </delete>
+</mapper>
